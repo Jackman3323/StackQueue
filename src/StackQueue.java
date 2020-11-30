@@ -38,5 +38,9 @@ public class StackQueue<T> {
 
     }
     //HELPER METHODS
-
+    private void clear(Stack<T> theStack) {
+        while(theStack.peek != null) {
+            theStack.pop();
+        }
+    }
 }
