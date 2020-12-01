@@ -31,16 +31,15 @@ public class StackQueue<T> {
     //MUTATORS
     //public void enqueue(T data): queues a new stackNode containing data
     public void enqueue(T data){
-
     }
     //public T dequeue(): returns the data of the first-in-line stackNode from the dequeue stack (?)
     public T dequeue(){
 
     }
     //HELPER METHODS
-    private void clear(Stack<T> theStack) {
-        while(theStack.peek != null) {
-            theStack.pop();
+    private void replaceStack(Stack<T> replaceStack, Stack<T> baseStack) {
+        while(replaceStack.peek() != null) {
+            replaceStack.pop();
         }
     }
 }
