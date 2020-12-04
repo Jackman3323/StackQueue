@@ -31,15 +31,42 @@ public class StackQueue<T> {
     //MUTATORS
     //public void enqueue(T data): queues a new stackNode containing data
     public void enqueue(T data){
+        enqueueStack.push(data);
+        replaceStack(dequeueStack,enqueueStack);
+        size++;
     }
     //public T dequeue(): returns the data of the first-in-line stackNode from the dequeue stack (?)
     public T dequeue(){
-
+        T data = dequeueStack.pop();
+        System.out.println(data);
+        replaceStack(enqueueStack,dequeueStack);
+        size--;
+        return data;
+    }
+    public T peek() {
+        return dequeueStack.peek();
+    }
+    public boolean isEmpty() {
+        if(size < 1) {
+            return true;
+        }
+        return false;
     }
     //HELPER METHODS
     private void replaceStack(Stack<T> replaceStack, Stack<T> baseStack) {
-        while(replaceStack.peek() != null) {
+        Stack<T> tempStack = new Stack<T>();
+        while(replaceStack.peek() != null) { //Replaces the old stack
             replaceStack.pop();
+        }
+        T tempItem = null;
+        while(baseStack.peek() != null) { //fills the temp and old stacks with updated values, mpties current stack
+            tempItem = baseStack.pop();
+            tempStack.push(tempItem);
+            replaceStack.push(tempItem);
+        }
+        while(tempStack.peek() != null) { //fill current stack, empties temp stack
+            tempItem = tempStack.pop();
+            baseStack.push(tempItem);
         }
     }
 }
